@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jListSelector;
 
 import javax.swing.*;
-
 import java.awt.Component;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
 import java.io.IOException;
-
 import java.util.Arrays;
-
 
 
 public class JavaListSelector extends javax.swing.JFrame {
@@ -25,8 +15,6 @@ public class JavaListSelector extends javax.swing.JFrame {
     ArrayList<String> permBufferAryList = new ArrayList<String>();
     String currentList;
     FileLocator fl = new FileLocator();
-    //public String locationOfSaveFiles = "C:/Users/Tom/Documents/Java Projects/RandomListSelector/List Saves/";
-
 
     
     public JavaListSelector() {
@@ -63,12 +51,6 @@ public class JavaListSelector extends javax.swing.JFrame {
         addNewListPopup.setMaximumSize(new java.awt.Dimension(10000, 10000));
         addNewListPopup.setMinimumSize(null);
         addNewListPopup.setResizable(false);
-
-        nameOfList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameOfListActionPerformed(evt);
-            }
-        });
 
         scrollPaneNewList.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -227,11 +209,12 @@ public class JavaListSelector extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     public void myInitComponents() {
-
         //adds the list names to the combobox
-        int i;
-        for (i = 0; i < fl.numberOfLists(); i++) {
+        for (int i = 0; i < fl.numberOfLists(); i++) {
             String list = fl.findFiles(i);
             selectList.addItem(list);
         }
@@ -239,23 +222,17 @@ public class JavaListSelector extends javax.swing.JFrame {
     }
     
     
-    private void addNewListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewListBtnActionPerformed
-        
+    private void addNewListBtnActionPerformed(java.awt.event.ActionEvent evt) {        
         //gives focus to nameOfList input
         addNewListPopup.pack();
         nameOfList.requestFocus();
         
         //opens addNewList popup window
-        addNewListPopup.setVisible(true);
-        
-    }//GEN-LAST:event_addNewListBtnActionPerformed
+        addNewListPopup.setVisible(true);        
+    }
+    
 
-    private void nameOfListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameOfListActionPerformed
-
-    }//GEN-LAST:event_nameOfListActionPerformed
-
-    private void selectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectListActionPerformed
-        
+    private void selectListActionPerformed(java.awt.event.ActionEvent evt) {        
         //set string as chosen list from combobox
         String chosenListName = (String)selectList.getSelectedItem();
         
@@ -271,18 +248,15 @@ public class JavaListSelector extends javax.swing.JFrame {
             permBufferAryList = (ArrayList<String>)bufferAryList.clone();
             
             //sets currentList as the chosen list
-            currentList = chosenListName;
-            
+            currentList = chosenListName;            
         }
         catch (IOException e) {
             System.out.println( e.getMessage() );
-        }
-        
-                
-    }//GEN-LAST:event_selectListActionPerformed
+        }          
+    }
 
-    private void seeListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seeListBtnActionPerformed
-        
+    
+    private void seeListBtnActionPerformed(java.awt.event.ActionEvent evt) {        
         //opens seeList popup window
         seeListPopup.setVisible(true);
 
@@ -296,12 +270,11 @@ public class JavaListSelector extends javax.swing.JFrame {
         while (listIterator.hasNext()) {
             String currentItem = listIterator.next();
             displayList.append(currentItem + "\n");
-        }
-        
-    }//GEN-LAST:event_seeListBtnActionPerformed
+        }       
+    }
+    
 
-    private void showRandomItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRandomItemBtnActionPerformed
-        
+    private void showRandomItemBtnActionPerformed(java.awt.event.ActionEvent evt) {        
         //finds random index from the selected list (if list is empty then -1 is returned)
         int randomIndex = randomListIndex(bufferAryList);
         
@@ -326,14 +299,12 @@ public class JavaListSelector extends javax.swing.JFrame {
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 options,
-                options[2]);
-            
+                options[2]);       
         }
         //if the selected list IS empty then displays jPane to user saying so
         else if (randomIndex == -1) {
             JOptionPane.showMessageDialog(null, "Error: List Empty", "Random item", JOptionPane.PLAIN_MESSAGE);
         }
-        
         
         //if user selects Permanent Remove Item button in jPane, removes the item from FILE and bufferAryList (permanent)
         if (removePermOrTemp == 1) {
@@ -345,8 +316,7 @@ public class JavaListSelector extends javax.swing.JFrame {
             String fileLocation = fl.fileLocation(currentList);
             
             try {
-                
-                //new WriteFile item
+                //new WriteFile object
                 WriteFile overWrite = new WriteFile(fileLocation, true);
                 
                 //clears current file
@@ -369,8 +339,7 @@ public class JavaListSelector extends javax.swing.JFrame {
                     else if ( !(tempClone.get(i) ).equals(randomItem) ) {
                         
                         //..then save the line to the file
-                        overWrite.writeToFile(tempClone.get(i) );
-                        
+                        overWrite.writeToFile(tempClone.get(i) );        
                     }
                 }   
             }
@@ -385,24 +354,19 @@ public class JavaListSelector extends javax.swing.JFrame {
             
             bufferAryList.remove(randomIndex);
             
-            System.out.println("Buffer = " + bufferAryList + "\n\n");
-            
-        }
-        
-        
-    }//GEN-LAST:event_showRandomItemBtnActionPerformed
+            System.out.println("Buffer = " + bufferAryList + "\n\n");  
+        }  
+    }
 
-    private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
-        
+    
+    private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed        
         //JOptionPane to get user-inputed new item
         String newItem = JOptionPane.showInputDialog("Add new item");
         
         //finds file location of the selected list
         String location = fl.fileLocation(currentList);
-
         
-        try {
-            
+        try { 
             //checks if JOptionPane was cancelled
             if (newItem != null) {
                 
@@ -417,19 +381,18 @@ public class JavaListSelector extends javax.swing.JFrame {
         }
         catch (IOException e) {
             System.out.println( e.getMessage() );
-        }        
-        
-    }//GEN-LAST:event_addItemBtnActionPerformed
+        }                
+    }
+    
 
-    private void saveListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveListBtnActionPerformed
-        
+    private void saveListBtnActionPerformed(java.awt.event.ActionEvent evt) {
         //stores the user inputed name of list and clears text area
         String newListName = nameOfList.getText();
+        
         nameOfList.setText("");
         
         //creates the file location using the name of list
         String newListFileName = fl.locationOfSaveFiles + "/" + newListName + ".txt";
-        
         
         //creates a string from the user inputed list of new items and clears text area
         String stringListOfItems = newListItems.getText();
@@ -440,7 +403,6 @@ public class JavaListSelector extends javax.swing.JFrame {
         
         //set the bufferAryList to the new ArrayList
         bufferAryList = aryListOfNewItems;
-        
         
         // loops through ArrayList items and saves them to a newly created file
         try {
@@ -459,23 +421,14 @@ public class JavaListSelector extends javax.swing.JFrame {
         selectList.addItem(newListName);
         selectList.setSelectedItem(newListName);
         
-        
         //closes the addNewList popup window
-        addNewListPopup.setVisible(false);
-        
-    }//GEN-LAST:event_saveListBtnActionPerformed
+        addNewListPopup.setVisible(false);     
+    }
 
 
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -516,28 +469,7 @@ public class JavaListSelector extends javax.swing.JFrame {
         }
         else {
             return -1;
-        }
-        
-    }
-    
-    
-    
-    class MyComboBoxRenderer extends JLabel implements ListCellRenderer {
-        private String _title;
-
-        public MyComboBoxRenderer(String title)
-        {
-            _title = title;
-        }
-
-        @Override
-        public Component getListCellRendererComponent(JList list, Object value,
-                int index, boolean isSelected, boolean hasFocus)
-        {
-            if (index == -1 && value == null) setText(_title);
-            else setText(value.toString());
-            return this;
-        }
+        } 
     }
     
     
