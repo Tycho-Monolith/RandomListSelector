@@ -4,7 +4,7 @@ package jListSelector;
 import java.io.File;
 
 
-public class Files {
+public class FileLocator {
     
     public String locationOfSaveFiles = "C:/Users/Tom/Documents/Java Projects/RandomListSelector/List Saves";
     
