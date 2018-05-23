@@ -24,7 +24,7 @@ public class JavaListSelector extends javax.swing.JFrame {
     ArrayList<String> bufferAryList = new ArrayList<String>();
     ArrayList<String> permBufferAryList = new ArrayList<String>();
     String currentList;
-    Files fls = new Files();
+    FileLocator fl = new FileLocator();
     //public String locationOfSaveFiles = "C:/Users/Tom/Documents/Java Projects/RandomListSelector/List Saves/";
 
 
@@ -228,13 +228,11 @@ public class JavaListSelector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void myInitComponents() {
-        
-//        Files fls = new Files();
 
         //adds the list names to the combobox
         int i;
-        for (i = 0; i < fls.numberOfLists(); i++) {
-            String list = fls.findFiles(i);
+        for (i = 0; i < fl.numberOfLists(); i++) {
+            String list = fl.findFiles(i);
             selectList.addItem(list);
         }
         
@@ -261,11 +259,8 @@ public class JavaListSelector extends javax.swing.JFrame {
         //set string as chosen list from combobox
         String chosenListName = (String)selectList.getSelectedItem();
         
-        //creates new object from ReadFile class
-//        Files fls = new Files();
-        
         //finds the file location of the selected list
-        String location = fls.fileLocation(chosenListName); 
+        String location = fl.fileLocation(chosenListName); 
         
         try {
             ReadFile file = new ReadFile(location);
@@ -347,7 +342,7 @@ public class JavaListSelector extends javax.swing.JFrame {
             bufferAryList.remove(randomIndex);
             
             //finds the file location of the current list
-            String fileLocation = fls.fileLocation(currentList);
+            String fileLocation = fl.fileLocation(currentList);
             
             try {
                 
@@ -403,7 +398,7 @@ public class JavaListSelector extends javax.swing.JFrame {
         String newItem = JOptionPane.showInputDialog("Add new item");
         
         //finds file location of the selected list
-        String location = fls.fileLocation(currentList);
+        String location = fl.fileLocation(currentList);
 
         
         try {
@@ -433,7 +428,7 @@ public class JavaListSelector extends javax.swing.JFrame {
         nameOfList.setText("");
         
         //creates the file location using the name of list
-        String newListFileName = fls.locationOfSaveFiles + "/" + newListName + ".txt";
+        String newListFileName = fl.locationOfSaveFiles + "/" + newListName + ".txt";
         
         
         //creates a string from the user inputed list of new items and clears text area
